@@ -25,7 +25,7 @@ app.post("/draft", async (req: Request, res: Response) => {
 });
 
 mongoose
-  .connect(process.env.MONGO_URL!)
+  .connect(process.env.MONGO_URL || "mongodb://localhost:2137")
   .then(() => {
     console.log(`App is listening on port: ${PORT}`);
     app.listen(PORT);
