@@ -1,11 +1,12 @@
 import { config } from "dotenv";
 config();
 
-import express, { Request, Response } from "express";
+import { Request, Response } from "express";
 import mongoose from "mongoose";
 
 import Draft from "./models/Draft";
 
+const express = require("express");
 const app = express();
 const PORT = 3000;
 

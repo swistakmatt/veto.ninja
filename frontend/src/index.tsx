@@ -1,19 +1,22 @@
-import React from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./views/Home";
-import Login from "./views/Login";
-import Register from "./views/Register";
-import "./styles/index.scss";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router";
+
+import "./index.scss";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
+  <StrictMode>
+    <RouterProvider router={router} />
+  </StrictMode>
 );
+
+const updateAppHeight = () => {
+  document.documentElement.style.setProperty(
+    "--app-height",
+    `${window.innerHeight}px`
+  );
+};
+
+window.addEventListener("resize", updateAppHeight);
+updateAppHeight();
