@@ -1,10 +1,11 @@
-import { config } from "dotenv";
-config();
+require("dotenv").config();
 
 import { Request, Response } from "express";
 import mongoose from "mongoose";
 
-import Draft from "./models/Draft";
+import userRoutes from "./routes/users";
+import draftRoutes from "./routes/drafts";
+import matchRoutes from "./routes/matches";
 
 const express = require("express");
 const app = express();
@@ -12,17 +13,12 @@ const PORT = 3000;
 
 app.use(express.json());
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("hello world");
-});
+app.use("/users", userRoutes);
+app.use("/matches", matchRoutes);
+app.use("/drafts", draftRoutes);
 
-app.post("/draft", async (req: Request, res: Response) => {
-  const newDraft = new Draft({
-    title: req.body.title,
-    content: req.body.content,
-  });
-  const createdDeck = await newDraft.save();
-  res.json(createdDeck);
+app.get("/", (req: Request, res: Response) => {
+  res.send("Welcome to the eSport Drafts API!");
 });
 
 mongoose
