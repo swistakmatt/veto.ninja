@@ -1,3 +1,50 @@
 @use "sass:color";
 
-$primaryColor: #ff5722;
+$backgroundColor: #282a36;
+$borderColor: #1f1f1f;
+$widgetColor: #4e4e4e;
+
+$gray: #525252;
+$grayBright: #a9a9a9;
+
+$red: #f40700;
+$redBright: #ff5555;
+
+$green: #008b81;
+$greenBright: #00c2b5;
+
+$blue: #00d9ff;
+$blueBright: #32fced;
+
+$yellow: #ffc843;
+$yellowBright: #f9f871;
+
+$textColor: #ffffff;
+
+$primaryColor: #c600ff;
+
+$fontFamily: "Roboto", sans-serif;
+$fontSize: 1rem;
+
+@mixin backgroundImage() {
+  position: relative;
+
+  &::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+
+    z-index: -1;
+
+    filter: blur(0.8rem);
+    opacity: 0.2;
+
+    background-size: cover;
+    background: repeat center/100% url(../../assets/veto.webp);
+  }
+}

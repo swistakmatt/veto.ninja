@@ -1,5 +1,8 @@
+@use "../../app" as *;
+
 .navBar {
   position: absolute;
+  z-index: 100;
   top: 0;
   left: 0;
   display: flex;
@@ -8,10 +11,32 @@
   gap: 1rem;
   height: 3rem;
   width: 100vw;
-  background-color: #424242;
+  background-color: $backgroundColor;
 }
 
 .logo {
   height: 2rem;
-  margin-left: 0.4rem;
+  margin-left: 1rem;
+}
+
+.userSection {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+.newUser {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 2rem;
+}
+
+.gamesButton {
+  justify-self: center;
 }

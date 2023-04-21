@@ -3,35 +3,58 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  scrollbar-color: app.$borderColor app.$widgetColor;
+  scrollbar-width: thin;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  font-size: 16px;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  --app-height: 100%;
 }
 
 body {
   margin: 0;
-  padding: 0;
-  display: flex;
-  place-items: center;
+  font-family: app.$fontFamily;
+  background-color: app.$backgroundColor;
+  font-size: app.$fontSize;
+  color: app.$textColor;
+
+  ::selection {
+    background-color: app.$textColor;
+    color: app.$backgroundColor;
+  }
+}
+
+html,
+body {
   min-height: 100vh;
+  min-height: var(--app-height);
+  height: 100%;
+}
+
+#root {
+  height: inherit;
+  position: relative;
 }
 
 a {
   text-decoration: none;
-  // color: app.$textColor;
+  color: app.$textColor;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+::-webkit-scrollbar {
+  width: 0.75rem;
+}
+
+::-webkit-scrollbar-track {
+  background: app.$borderColor;
+  border-radius: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: app.$widgetColor;
+  border-radius: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: app.$widgetColor;
 }

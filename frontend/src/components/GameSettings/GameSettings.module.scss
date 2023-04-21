@@ -1,0 +1,17 @@
+@use "../../app" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60rem;
+  height: 40rem;
+  border-radius: 2rem;
+  background-color: rgba($backgroundColor, 0.9);
+}
+
+.gameForm {
+  display: flex;
+  flex-direction: column;
+}
