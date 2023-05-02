@@ -1,7 +1,8 @@
 require("dotenv").config();
 
-import { Request, Response } from "express";
 import mongoose from "mongoose";
+import { Request, Response } from "express";
+import configureExpressMiddlewares from "./middlewares";
 
 import userRoutes from "./routes/users";
 import draftRoutes from "./routes/drafts";
@@ -9,9 +10,9 @@ import matchRoutes from "./routes/matches";
 
 const express = require("express");
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
+configureExpressMiddlewares(app);
 
 app.use("/users", userRoutes);
 app.use("/matches", matchRoutes);
