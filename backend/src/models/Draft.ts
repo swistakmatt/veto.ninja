@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document, ObjectId } from "mongoose";
 
 export enum GameName {
   VALORANT = "valorant",
@@ -6,11 +6,13 @@ export enum GameName {
 }
 
 export interface IDraft extends Document {
+  _id: ObjectId;
   gameName: GameName;
+  draftOrder: string[];
+  startingUser: string;
   teams: [
     {
-      teamName: string;
-      captain: string;
+      user: string;
       picks: string[];
       bans: string[];
     }
@@ -18,14 +20,15 @@ export interface IDraft extends Document {
 }
 
 const TeamSchema: Schema = new Schema({
-  teamName: { type: String, required: true },
-  captain: { type: Schema.Types.ObjectId, ref: "User", required: true },
-  picks: [{ type: String, required: true }],
-  bans: [{ type: String, required: true }],
+  user: { type: String, required: true },
+  picks: [{ type: String, required: false }],
+  bans: [{ type: String, required: false }],
 });
 
 const DraftSchema: Schema = new Schema({
   gameName: { type: String, enum: Object.values(GameName), required: true },
+  draftOrder: { type: [String], required: false },
+  startingUser: { type: String, required: true },
   teams: { type: [TeamSchema], required: true },
 });
 

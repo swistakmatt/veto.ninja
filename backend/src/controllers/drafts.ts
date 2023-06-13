@@ -1,38 +1,24 @@
 import { Request, Response } from "express";
-import Draft, { IDraft } from "../models/Draft";
+import Draft from "../models/Draft";
 
-export async function getDrafts(req: Request, res: Response) {
+export const createDraft = async (req: Request, res: Response) => {
+  const draft = new Draft(req.body);
   try {
-    const drafts: IDraft[] = await Draft.find({});
-    res.json(drafts);
-  } catch (err) {
-    res.status(500).send("Server error");
+    await draft.save();
+    res.status(201).send(draft);
+  } catch (e) {
+    res.status(400).send(e);
   }
-}
+};
 
-export async function getDraft(req: Request, res: Response) {
-  const { id } = req.params;
+export const getDraft = async (req: Request, res: Response) => {
   try {
-    const draft: IDraft | null = await Draft.findById(id);
+    const draft = await Draft.findById(req.params.id);
     if (!draft) {
-      return res.status(404).json({ message: "Draft not found" });
+      return res.status(404).send();
     }
-    res.json(draft);
-  } catch (err) {
-    res.status(500).send("Server error");
+    res.send(draft);
+  } catch (e) {
+    res.status(500).send();
   }
-}
-
-export async function createDraft(req: Request, res: Response) {
-  const { team1, team2 } = req.body;
-  try {
-    const newDraft = new Draft({
-      team1,
-      team2,
-    });
-    const savedDraft = await newDraft.save();
-    res.json(savedDraft);
-  } catch (err) {
-    res.status(500).send("Server error");
-  }
-}
+};

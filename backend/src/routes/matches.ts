@@ -1,32 +1,16 @@
-import { Request, Response, NextFunction } from "express";
-import { check, validationResult } from "express-validator";
-import { GameName } from "../models/Draft";
-import { getMatches, getMatch, createMatch } from "../controllers/matches";
+import { Router } from "express";
+import {
+  createMatch,
+  getMatch,
+  getUserHistory,
+  getUserHistoryWithUsernames,
+} from "../controllers/matches";
 
-const express = require("express");
-const router = express.Router();
+const router = Router();
 
-const handleErrors = (req: Request, res: Response, next: NextFunction) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-  next();
-};
-
-router.get("/", getMatches);
+router.post("/create", createMatch);
 router.get("/:id", getMatch);
-
-router.post(
-  "/",
-  [
-    check("gameName")
-      .isIn(Object.values(GameName))
-      .withMessage("Invalid or missing gameName"),
-    check("result").optional().notEmpty().withMessage("Result cannot be empty"),
-  ],
-  handleErrors,
-  createMatch
-);
+router.get("/history/:id", getUserHistory);
+router.get("/history/:id/usernames", getUserHistoryWithUsernames);
 
 export default router;

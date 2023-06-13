@@ -1,22 +1,20 @@
-import { Request, Response, NextFunction } from "express";
+import passport from "passport";
 import { check, validationResult } from "express-validator";
+
 import {
+  handleErrors,
   createUser,
   getUsers,
   getUser,
-  deleteUser,
+  loginUser,
+  logoutUser,
+  getProfile,
+  getUserFriends,
+  addFriend,
 } from "../controllers/users";
 
 const express = require("express");
 const router = express.Router();
-
-const handleErrors = (req: Request, res: Response, next: NextFunction) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-  next();
-};
 
 router.post(
   "/",
@@ -31,8 +29,19 @@ router.post(
   createUser
 );
 
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    failureMessage: true,
+  }),
+  loginUser
+);
+
+router.get("/logout", logoutUser);
+router.get("/me", getProfile);
+router.post("/me/friends", addFriend);
+router.get("/friends", getUserFriends);
 router.get("/", getUsers);
 router.get("/:id", getUser);
-router.delete("/:id", deleteUser);
 
 export default router;

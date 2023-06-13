@@ -1,7 +1,8 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document, ObjectId } from "mongoose";
 import Draft, { IDraft } from "./Draft";
 
 export interface IMatch extends Document {
+  _id: ObjectId;
   date: Date;
   draft: IDraft;
   result: string;
