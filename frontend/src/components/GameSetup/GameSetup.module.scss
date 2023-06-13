@@ -1,0 +1,80 @@
+@use "../../app" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 40rem;
+  border-radius: 2rem;
+  background-color: rgba($backgroundColor, 0.9);
+}
+
+.gameForm {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  gap: 1rem;
+}
+
+.chooseGame {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(85, 85, 85, 0.3);
+  border-radius: 1rem;
+  padding: 1rem;
+  width: fit-content;
+  // max-width: 100%;
+  align-self: center;
+  gap: 1rem;
+}
+
+.chooseGame > input[type="radio"] {
+  // display: none;
+  margin: none;
+  padding: none;
+}
+
+.opponentContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.gameImage {
+  width: 4rem;
+  // margin-right: 1rem;
+}
+
+// input[type="radio"] {
+//   opacity: 0;
+//   width: 0;
+//   height: 0;
+// }
+
+input[type="radio"]:active ~ label {
+  opacity: 1;
+}
+
+// input[type="radio"]:checked ~ label {
+//   opacity: 1;
+//   border: 1px solid rgba(85, 85, 85, 1);
+//   background-color: #141419;
+// }
+
+.labels {
+  display: block;
+  width: fit-content;
+  box-sizing: border-box;
+  padding: 2rem;
+  border: 1px solid rgba(85, 85, 85, 0.3);
+  border-radius: 1rem;
+  opacity: 0.5;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}

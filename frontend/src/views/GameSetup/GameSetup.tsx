@@ -1,12 +1,12 @@
 import Page from "../../components/Page/Page";
 import style from "./GameSetup.module.scss";
-import GameSettings from "../../components/GameSettings/GameSettings";
+import GameSetupComponent from "../../components/GameSetup/GameSetup";
 
 const GameSetup = () => {
   return (
     <Page>
       <div className={style.container}>
-        <GameSettings />
+        <GameSetupComponent />
       </div>
     </Page>
   );
