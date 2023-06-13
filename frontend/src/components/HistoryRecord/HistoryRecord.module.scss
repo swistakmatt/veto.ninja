@@ -1,0 +1,91 @@
+@use "../../app" as *;
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 45rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid $gray;
+}
+
+.gameImage {
+  width: 2.5rem;
+}
+
+.gameInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40rem;
+  gap: 0.25rem;
+}
+
+.gameResult {
+  font-size: 1.5rem;
+}
+
+.gameDate {
+  font-size: 0.7rem;
+  color: $grayBright;
+}
+
+.gameDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.gameScore {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.gameUser {
+  color: $primaryColor;
+  text-align: center;
+}
+
+.gameOpponent {
+  color: $red;
+}
+
+.gamePicks,
+.gameBans {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+}
+
+.startingUser {
+  margin-top: 0.8rem;
+  color: $grayBright;
+  font-size: 0.8rem;
+}
+
+.gamePicks {
+  color: $green;
+}
+
+.gameBans {
+  color: $redBright;
+}
